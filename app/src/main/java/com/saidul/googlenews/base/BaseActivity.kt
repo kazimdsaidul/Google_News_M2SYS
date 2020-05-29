@@ -40,6 +40,11 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
         }
     }
 
+    fun enableToolbarBackButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
     fun setToolbarWithOutBack(title: String) {
         assert(supportActionBar != null)
         if (supportActionBar != null) {

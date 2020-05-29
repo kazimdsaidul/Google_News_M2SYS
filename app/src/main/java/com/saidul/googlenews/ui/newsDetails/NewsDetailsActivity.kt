@@ -15,19 +15,25 @@ import kotlinx.android.synthetic.main.content_news_details.*
 
 
 class NewsDetailsActivity : BaseActivity() {
-
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_details)
+
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        enableToolbarBackButton()
+        initilzationVIew()
 
+
+    }
+
+    private fun initilzationVIew() {
         val item = intent.getParcelableExtra("data") as Article
-
         title = item.url
+        setupWebView(item)
+    }
 
+    private fun setupWebView(item: Article) {
         mWebView.loadUrl(item.url)
 
         // Enable Javascript
@@ -51,14 +57,10 @@ class NewsDetailsActivity : BaseActivity() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 materialProgressBar.visibility = View.VISIBLE
-
             }
-
-
         }
-
-
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
