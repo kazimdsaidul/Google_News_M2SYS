@@ -96,5 +96,14 @@ dependencies {
 
     implementation 'com.orhanobut:hawk:2.0.1'
 
+    // recyclerview advance lib
+    implementation 'com.xwray:groupie:2.3.0'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.3.0'
+    implementation 'com.xwray:groupie-databinding:2.3.0'
+
+
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
 
 }

@@ -14,9 +14,6 @@ open class BaseRepository(
 
 ) : SafeApiRequest() {
 
-//    suspend fun userLogin(email: String, password: String): UserLoginResponse {
-//        return apiRequest { apiService.userLogin(email, password) }
-//    }
 
     suspend fun saveUser(user: User) = db.getUserDao().upsert(user)
 

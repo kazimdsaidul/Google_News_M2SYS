@@ -1,12 +1,16 @@
 package com.saidul.googlenews.data.network
 
-import androidx.databinding.library.BuildConfig
 import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
+import com.saidul.googlenews.BuildConfig
 import com.saidul.googlenews.data.network.interceptor.NetworkConnectionInterceptor
+import com.saidul.googlenews.data.network.model.ReposeHeadlines
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 /**
@@ -14,11 +18,11 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 interface APIService {
 
-
-//    @POST()
-//    @FormUrlEncoded
-//    Call<APIResposeGenerateToken> callGenerateToken(@Url String ur, @Header("Authorization") String AuthorizationKey, @FieldMap Map<String, String> params);
-//
+    @GET("top-headlines")
+    suspend fun getHeadlinesData(
+        @Query("country") country: String,
+        @Query("apiKey") apiKey: String
+    ): Response<ReposeHeadlines>
 
 
     companion object {
@@ -39,7 +43,7 @@ interface APIService {
 
             return Retrofit.Builder()
                 .client(okkHttpclient.build())
-                .baseUrl("https://api.simplifiedcoding.in/course-apis/mvvm/")
+                .baseUrl("https://newsapi.org/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(APIService::class.java)

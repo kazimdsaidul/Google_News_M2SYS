@@ -24,7 +24,12 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
         setContentView(R.layout.activity_homepage)
 
         initViewModel()
-        addNewsHeadlinesFragment()
+
+        if (savedInstanceState == null) {
+            addNewsHeadlinesFragment()
+        }
+
+
 
     }
 
@@ -33,13 +38,22 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
         val manager = supportFragmentManager
         val transaction = manager.beginTransaction()
         transaction.replace(R.id.container, beneficiaryFragment)
-        transaction.addToBackStack(NewsHeadlinesFragment::class.simpleName)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 
     private fun initViewModel() {
         val viewModel = ViewModelProviders.of(this, factory).get(HomePageViewModel::class.java)
         viewModel.setView(this)
+    }
+
+    override fun onBackPressed() {
+        val fm = supportFragmentManager
+        if (fm.backStackEntryCount > 0) {
+            fm.popBackStack()
+        } else {
+            super.onBackPressed()
+        }
     }
 
 
