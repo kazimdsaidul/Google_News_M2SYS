@@ -29,7 +29,7 @@ class ArticleItem(private val im: Article, val onLikeClickedListener: OnLikeClic
 
 
 
-        viewBinding.ivEmpImage.setOnClickListener {
+        viewBinding.tvTitle.setOnClickListener {
             onLikeClickedListener.onLikeClicked(im)
         }
     }

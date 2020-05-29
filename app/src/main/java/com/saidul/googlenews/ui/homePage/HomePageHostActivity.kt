@@ -28,9 +28,6 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
         if (savedInstanceState == null) {
             addNewsHeadlinesFragment()
         }
-
-
-
     }
 
     private fun addNewsHeadlinesFragment() {
@@ -48,12 +45,7 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
     }
 
     override fun onBackPressed() {
-        val fm = supportFragmentManager
-        if (fm.backStackEntryCount > 0) {
-            fm.popBackStack()
-        } else {
-            super.onBackPressed()
-        }
+        finish()
     }
 
 

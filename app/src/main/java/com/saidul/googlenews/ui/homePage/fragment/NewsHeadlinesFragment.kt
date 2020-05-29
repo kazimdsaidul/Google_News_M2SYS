@@ -1,6 +1,7 @@
 package com.saidul.googlenews.ui.homePage.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import com.saidul.googlenews.ui.homePage.fragment.model.ArticleItem
 import com.saidul.googlenews.ui.homePage.view.HomePageFactory
 import com.saidul.googlenews.ui.homePage.view.IHomePageView
 import com.saidul.googlenews.ui.homePage.viewmodel.HomePageViewModel
+import com.saidul.googlenews.ui.newsDetails.NewsDetailsActivity
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.news_headlines_fragment.*
@@ -103,9 +105,10 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
         return this.map {
             ArticleItem(it, object : ArticleItem.OnLikeClickedListener {
                 override fun onLikeClicked(item: Article) {
-//                    val intent = Intent(activity?.applicationContext, ImageDetailsActivity::class.java)
-//                    intent.putExtra("image_url", item.avatar)
-//                    startActivity(intent)
+                    val intent =
+                        Intent(activity?.applicationContext, NewsDetailsActivity::class.java)
+                    intent.putExtra("data", item)
+                    startActivity(intent)
                 }
             })
         }
