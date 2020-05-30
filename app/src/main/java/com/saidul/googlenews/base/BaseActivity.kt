@@ -18,7 +18,6 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
     val class_Name: String = this.javaClass.simpleName
 
     fun setToolbar(title: String, color: Int) {
-        assert(supportActionBar != null)
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             val spannablerTitle = SpannableString(title)
@@ -33,7 +32,6 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
     }
 
     fun setToolbar(title: String) {
-        assert(supportActionBar != null)
         if (supportActionBar != null) {
             supportActionBar!!.title = title
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -52,7 +50,6 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
 
 
     fun setToolbarWithOutBack(title: String) {
-        assert(supportActionBar != null)
         if (supportActionBar != null) {
             supportActionBar!!.title = title
         }

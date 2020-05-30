@@ -5,12 +5,11 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Google News"
+        android:text="@string/google_news"
         android:textSize="48dp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
