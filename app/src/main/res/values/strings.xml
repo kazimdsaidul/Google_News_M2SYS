@@ -5,4 +5,5 @@
 
     <string name="headline_image">Headline image</string>
     <string name="google_news">Google News</string>
+    <string name="no_internet_found">No internet connection found!!!</string>
 </resources>

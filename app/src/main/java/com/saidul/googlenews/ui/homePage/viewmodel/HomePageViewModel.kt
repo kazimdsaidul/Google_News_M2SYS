@@ -41,7 +41,7 @@ class HomePageViewModel(val repository: AppRepository) : ViewModel() {
                 mView?.onFailure(e.message)
             } catch (e: NoInternetException) {
                 mView?.hiddenProgress()
-                mView?.onFailure("No internet found!!!")
+                mView?.noInternetConnectionFound()
             }
         }
     }

@@ -90,6 +90,7 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
     }
 
     override fun onFailure(message: String?) {
+
     }
 
 
