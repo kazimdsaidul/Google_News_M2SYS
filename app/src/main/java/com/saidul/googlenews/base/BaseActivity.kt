@@ -45,6 +45,12 @@ open class BaseActivity : AppCompatActivity(), IBaseView {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
+    fun disenableToolbarBackButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayShowHomeEnabled(false)
+    }
+
+
     fun setToolbarWithOutBack(title: String) {
         assert(supportActionBar != null)
         if (supportActionBar != null) {

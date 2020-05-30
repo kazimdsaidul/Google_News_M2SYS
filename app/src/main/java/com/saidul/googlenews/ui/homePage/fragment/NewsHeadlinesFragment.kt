@@ -118,8 +118,8 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
     override fun showProgress() {
         super.showProgress()
         swipLayout.isRefreshing = true
-        // progressBar.visibility = View.VISIBLE
         recyclerview.visibility = View.INVISIBLE
+        materialProgressBarHome.visibility = View.VISIBLE
 
     }
 
@@ -128,6 +128,8 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
         // progressBar.visibility = View.INVISIBLE
         swipLayout.isRefreshing = false
         recyclerview.visibility = View.VISIBLE
+        materialProgressBarHome.visibility = View.GONE
+
 
     }
 

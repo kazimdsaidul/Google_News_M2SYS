@@ -9,6 +9,7 @@ import com.saidul.googlenews.ui.homePage.fragment.NewsHeadlinesFragment
 import com.saidul.googlenews.ui.homePage.view.HomePageFactory
 import com.saidul.googlenews.ui.homePage.view.IHomePageView
 import com.saidul.googlenews.ui.homePage.viewmodel.HomePageViewModel
+import kotlinx.android.synthetic.main.activity_homepage.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -22,6 +23,9 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homepage)
+        setSupportActionBar(toolbar)
+        setToolbar("Google News")
+        disenableToolbarBackButton()
 
         initViewModel()
 
@@ -47,6 +51,5 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
     override fun onBackPressed() {
         finish()
     }
-
 
 }
