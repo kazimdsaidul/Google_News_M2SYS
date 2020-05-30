@@ -18,7 +18,7 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
 
     override val kodein by kodein()
 
-    private val factory: HomePageFactory by instance()
+    private val factory: HomePageFactory by instance<HomePageFactory>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -32,7 +32,7 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
     KodeinAware {
 
     override val kodein by kodein()
-    private val factory: HomePageFactory by instance()
+    private val factory: HomePageFactory by instance<HomePageFactory>()
     lateinit var viewModel: HomePageViewModel
 
     lateinit var gridLayoutManager: GridLayoutManager
