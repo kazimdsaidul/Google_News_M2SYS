@@ -8,5 +8,4 @@ class Source {
 
     @SerializedName("name")
     var name: String? = null
-
 }

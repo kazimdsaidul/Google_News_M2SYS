@@ -23,15 +23,20 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homepage)
-        setSupportActionBar(toolbar)
-        setToolbar("Google News")
-        disenableToolbarBackButton()
+
+        setupToolbar()
 
         initViewModel()
 
         if (savedInstanceState == null) {
             addNewsHeadlinesFragment()
         }
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
+        setToolbar("Google News")
+        disenableToolbarBackButton()
     }
 
     private fun addNewsHeadlinesFragment() {
@@ -51,5 +56,4 @@ class HomePageHostActivity : BaseActivity(), IHomePageView, KodeinAware {
     override fun onBackPressed() {
         finish()
     }
-
 }

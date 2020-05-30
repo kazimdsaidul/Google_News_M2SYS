@@ -8,7 +8,7 @@ import com.saidul.googlenews.data.db.AppDatabase
 import com.saidul.googlenews.data.network.APIService
 import com.saidul.googlenews.data.network.interceptor.HeaderTokenInterceptor
 import com.saidul.googlenews.data.network.interceptor.NetworkConnectionInterceptor
-import com.saidul.googlenews.ui.homePage.view.AppRepository
+import com.saidul.googlenews.data.repository.AppRepository
 import com.saidul.googlenews.ui.homePage.view.HomePageFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -37,7 +37,12 @@ class AppController : Application(), KodeinAware {
         bind() from singleton { OkHttpProfilerInterceptor() }
         bind() from singleton { APIService(instance()) }
         bind() from singleton { AppDatabase(instance()) }
-        bind() from singleton { AppRepository(instance(), instance()) }
+        bind() from singleton {
+            AppRepository(
+                instance(),
+                instance()
+            )
+        }
 
 
         bind() from provider { HomePageFactory(instance()) }

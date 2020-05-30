@@ -3,7 +3,7 @@ package com.saidul.googlenews.ui.homePage.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.saidul.googlenews.data.network.model.Article
-import com.saidul.googlenews.ui.homePage.view.AppRepository
+import com.saidul.googlenews.data.repository.AppRepository
 import com.saidul.googlenews.ui.homePage.view.IHomePageView
 import com.saidul.googlenews.utils.exception.ApiException
 import com.saidul.googlenews.utils.exception.Coroutines
@@ -16,7 +16,7 @@ class HomePageViewModel(val repository: AppRepository) : ViewModel() {
     }
 
     init {
-        getData()
+        getArticleList(false)
     }
 
 
@@ -26,13 +26,13 @@ class HomePageViewModel(val repository: AppRepository) : ViewModel() {
     var mView: IHomePageView? = null
 
 
-    private fun getData() {
+    private fun getArticleList(isNeddToRefresh: Boolean) {
         mView?.showProgress()
         Coroutines.main {
             try {
                 isLoading = true
-                val employees = repository.getHeadlinesData()
-                listOfArticle.value = employees.articles
+                val articles = repository.getArticleList(isNeddToRefresh)
+                listOfArticle.value = articles
                 isLoading = false
                 mView?.hiddenProgress()
 
@@ -47,7 +47,7 @@ class HomePageViewModel(val repository: AppRepository) : ViewModel() {
     }
 
     fun onRefresh() {
-        getData()
+        getArticleList(true)
 
     }
 

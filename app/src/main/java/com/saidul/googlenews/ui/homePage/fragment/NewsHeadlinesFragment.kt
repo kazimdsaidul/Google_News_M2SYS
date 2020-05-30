@@ -1,17 +1,13 @@
 package com.saidul.googlenews.ui.homePage.fragment
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.saidul.googlenews.R
 import com.saidul.googlenews.base.BaseFragment
@@ -21,6 +17,7 @@ import com.saidul.googlenews.ui.homePage.view.HomePageFactory
 import com.saidul.googlenews.ui.homePage.view.IHomePageView
 import com.saidul.googlenews.ui.homePage.viewmodel.HomePageViewModel
 import com.saidul.googlenews.ui.newsDetails.NewsDetailsActivity
+import com.saidul.googlenews.utils.DevicesChecker
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.news_headlines_fragment.*
@@ -34,11 +31,9 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
 
     override val kodein by kodein()
     private val factory: HomePageFactory by instance()
-    lateinit var gridLayoutManager: GridLayoutManager
-
-
     lateinit var viewModel: HomePageViewModel
 
+    lateinit var gridLayoutManager: GridLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,19 +48,15 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
         super.onActivityCreated(savedInstanceState)
         initView()
         initViewModel()
-
-
     }
 
     private fun initView() {
         swipLayout.setOnRefreshListener(this)
-        if (isTablet(requireActivity().applicationContext)) {
+        if (DevicesChecker.isTablet(requireActivity().applicationContext)) {
             gridLayoutManager = GridLayoutManager(requireContext().applicationContext, 2)
         } else {
             gridLayoutManager = GridLayoutManager(requireContext().applicationContext, 1)
         }
-
-
     }
 
     private fun initViewModel() {
@@ -77,7 +68,6 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
         })
     }
 
-
     private fun initRecyclerView(quoteItem: List<Article>) {
         val mAdapter = GroupAdapter<ViewHolder>().apply {
             addAll(quoteItem.toImageItem())
@@ -87,17 +77,6 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
             setHasFixedSize(true)
             adapter = mAdapter
         }
-
-        recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    Log.d("-----", "end")
-                    val totalItemCount = recyclerView.layoutManager!!.itemCount
-                    //viewModel.addOnScroll(totalItemCount);
-                }
-            }
-        })
 
     }
 
@@ -130,17 +109,10 @@ class NewsHeadlinesFragment : BaseFragment(), IHomePageView, SwipeRefreshLayout.
         recyclerview.visibility = View.VISIBLE
         materialProgressBarHome.visibility = View.GONE
 
-
     }
 
     override fun onRefresh() {
         viewModel.onRefresh()
-
-    }
-
-    fun isTablet(ctx: Context): Boolean {
-        return ctx.resources
-            .configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_LARGE
     }
 
 

@@ -1,7 +1,6 @@
 package com.saidul.googlenews.data.repository
 
 import com.saidul.googlenews.data.db.AppDatabase
-import com.saidul.googlenews.data.db.entities.User
 import com.saidul.googlenews.data.network.APIService
 import com.saidul.googlenews.data.network.SafeApiRequest
 
@@ -12,10 +11,4 @@ open class BaseRepository(
     val apiService: APIService,
     val db: AppDatabase
 
-) : SafeApiRequest() {
-
-
-    suspend fun saveUser(user: User) = db.getUserDao().upsert(user)
-
-
-}
+) : SafeApiRequest()
